@@ -4,12 +4,17 @@
 			// These are the defaults.
 			handler: "scroll",
 			attributes: ["label", "width", "aria-valuenow"],
+			animation: 1,
 			interval: 1,
 			debug: 0
 		}, options);
 
 		return this.each(function() {
 			$el = $(this);
+			if (settings.animation)
+			{
+				$el.css({transition: "all 0.3s ease"});
+			}
 			if (settings.handler == "scroll") {
 				$(window).scroll(function(){
 					var document_height = $(document).height() - $(window).height();
@@ -29,6 +34,7 @@
 					{
 						console.log("Page progress: " + page_progress + "%");
 					}
+
 
 					$.each(settings.attributes, function(i, value){
 						if (value == "width") {
